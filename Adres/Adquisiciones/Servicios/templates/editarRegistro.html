@@ -1,0 +1,91 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestión de Registro {% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-1 col-xl-1">
+        <a href="{% url 'ver_registro' idRegistro=registro.idRegistro %}" class="btn btnBack"><i class="bi bi-caret-left-fill"></i></a>
+    </div>
+    
+    <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
+        <h2>Edición de Adquisiciones</h2>
+        {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'editar_adquisicion' %}" method="POST">{% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="txtid" name="txtid" value="{{registro.idRegistro}}" class="form-control" placeholder="Presupuesto" minlength="3" maxlength="50" required readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="txtPresupuesto" name="txtPresupuesto" value="{{registro.Presupuesto.amount}}" class="form-control" placeholder="Presupuesto" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtUnidad" name="txtUnidad" value="{{registro.Unidad}}" class="form-control" placeholder="Unidad" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtTipo" name="txtTipo" value="{{registro.Tipo}}" class="form-control" placeholder="Tipo de bien o servicio" minlength="3" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="txtCantidad" name="txtCantidad" value="{{registro.Cantidad}}" class="form-control" placeholder="Cantidad" minlength="1" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="txtValorUnitario" name="txtValorUnitario" value="{{registro.ValorUnitario.amount}}" class="form-control" placeholder="Valor unitario" minlength="3" maxlength="13" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="txtFecha" name="txtFecha" value="{{registro.FechaAdquisicion|date:'Y-m-d'}}" class="form-control" placeholder="Fecha de Adquisición" required>
+
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtProveedor" name="txtProveedor" value="{{registro.Proveedor}}" class="form-control" placeholder="Proveedor" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtDocumentacion" name="txtDocumentacion" value="{{registro.Documentacion}}" class="form-control" placeholder="Documentación" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-block btnOscuro text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <h1>Historial de Cambios</h1>
+    
+        <div class="accordion" id="accordionExample">
+            {% for fecha, cambios in cambios_agrupados.items %}
+                <div class="accordion-item" >
+                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-controls="collapse{{ forloop.counter }}" >
+                            {{ fecha }}
+                        </button>
+                    </h2>
+    
+                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {% for cambio in cambios %}
+                                <p>{{ cambio.campo_modificado }}: {{ cambio.valor_anterior }} -> {{ cambio.nuevo_valor }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div> 
+</div>
+
+<script>
+    console.log("FechaAdquisicion:", "{{ registro.FechaAdquisicion }}");
+    console.log("ValorUnitario:", "{{ registro.ValorUnitario }}");
+</script>
+
+
+{% endblock %}

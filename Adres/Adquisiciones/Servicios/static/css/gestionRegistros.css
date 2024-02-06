@@ -1,0 +1,101 @@
+.navbar-nav .nav-link:hover {
+    background-color: #15a393 ; 
+    color: #273658;
+    border-radius: 5px;
+}
+.navbar-nav .nav-link{
+    color: #15a393;
+}
+
+
+th, td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+h1{
+    color: #15a393;
+}
+h2{
+    color: #4f68b1;
+}
+.card-body{
+    background-color: #f2f2f2;
+}
+h6, h5, p{
+    color: #293556 !important;
+}
+.btnOscuro{
+    background-color: #293556;
+    border-color: #293556;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnOscuro:hover{
+    background-color: #4f68b1;
+    border-color: #4f68b1;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnClaro:hover{
+    background-color: #4f68b1;
+    border-color: #4f68b1;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnClaro{
+    background-color: #15a393;
+    border-color: #15a393;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnMedio{
+    background-color: #15a393;
+    border-color: #15a393;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnMedio:hover{
+    background-color: #4f68b1;
+    border-color: #4f68b1;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnBack{
+    background-color: #4f68b1;
+    border-color: #4f68b1;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.btnBack:hover{
+    background-color: #293556;
+    border-color: #293556;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.accordion-item {
+    background-color: #f0f0f0; 
+}
+
+
+.accordion-button {
+    background-color: #f2f2f2; 
+}
+
+
+.accordion-item:nth-child(even) .accordion-button {
+    background-color: rgb(191, 235, 236); 
+}
+
+
+
+

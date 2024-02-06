@@ -1,0 +1,78 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestión de Registro {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-1 col-xl-1">
+        <a href="{% url 'lista_registros' %}" class="btn btnBack" style="align-items: center;"><i class="bi bi-caret-left-fill"></i></a>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
+        <h2>Ver Registro de Adquisición</h2>
+        
+        <div class="card">
+            <div class="card-body">
+
+
+                <h5 class="card-title">Presupuesto:</h5>
+                <p class="card-text">{{registro.Presupuesto}}</p>
+                <h5 class="card-title">Unidad:</h5>
+                <p class="card-text">{{registro.Unidad}}</p>
+                <h5 class="card-title">Tipo de Bien o Servicio:</h5>
+                <p class="card-text">{{registro.Tipo}}</p>
+                <h5 class="card-title">Cantidad:</h5>
+                <p class="card-text">{{registro.Cantidad}}</p>
+                <h5 class="card-title">Valor Unitario:</h5>
+                <p class="card-text">{{registro.ValorUnitario}}</p>
+                <h5 class="card-title">Valor Total:</h5>
+                <p class="card-text">{{registro.ValorTotal}}</p>
+                <h5 class="card-title">Fecha de Adquisición:</h5>
+                <p class="card-text">{{registro.FechaAdquisicion}}</p>
+                <h5 class="card-title">Proveedor:</h5>
+                <p class="card-text">{{registro.Proveedor}}</p>
+                <h5 class="card-title">Documentación:</h5>
+                <p class="card-text">{{registro.Documentacion}}</p>
+                <div class="form-group py-2 d-grid gap-2">
+                    <a href="{% url 'editar_registro' idRegistro=registro.idRegistro %}" class="btn btn-primary text-white btnOscuro">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <h1>Historial de Cambios</h1>
+    
+        <div class="accordion" id="accordionExample">
+            {% for fecha, cambios in cambios_agrupados.items %}
+                <div class="accordion-item" >
+                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-controls="collapse{{ forloop.counter }}" >
+                            {{ fecha }}
+                        </button>
+                    </h2>
+    
+                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <!-- {% for cambio in cambios %}
+                                <p>{{ cambio.campo_modificado }}: {{ cambio.valor_anterior }} -> {{ cambio.nuevo_valor }}</p>
+                            {% endfor %} -->
+
+                            {% for cambio in cambios %}
+                                {% if cambio.valor_anterior != cambio.nuevo_valor %}
+                                    <p>{{ cambio.campo_modificado }}: {{ cambio.valor_anterior }} -> {{ cambio.nuevo_valor }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                            <!-- {% for cambio in cambios %}
+                                {% if cambio.valor_anterior.amount != cambio.nuevo_valor.amount %}
+                                    <p>{{ cambio.campo_modificado }}: {{ cambio.valor_anterior }} -> {{ cambio.nuevo_valor }}</p>
+                                {% endif %}
+                            {% endfor %} -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+</div>
+{% endblock %}

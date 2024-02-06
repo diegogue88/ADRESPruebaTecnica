@@ -1,0 +1,177 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestión de Registro {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h2>Registro de requerimientos de Adquisiciones</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarAdquisicion/" method="POST">{% csrf_token %}
+                    <div class="form-group py-2">
+                        <h6>Presupuesto:</h6>
+                        <input type="number" id="txtPresupuesto" name="txtPresupuesto" class="form-control" placeholder="Ej: 10000" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Unidad:</h6>
+                        <input type="text" id="txtUnidad" name="txtUnidad" class="form-control" placeholder="Ej: Dirección de Medicamentos" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Tipo de Bien o Servicio:</h6>
+                        <input type="text" id="txtTipo" name="txtTipo" class="form-control" placeholder="Ej: Medicamentos" minlength="3" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Cantidad:</h6>
+                        <input type="number" id="txtCantidad" name="txtCantidad" class="form-control" placeholder="Ej: 1000" minlength="1" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Valor Unitario:</h6>
+                        <input type="number" id="txtValorUnitario" name="txtValorUnitario" class="form-control" placeholder="Ej:10000000" minlength="3" maxlength="13" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Fecha de Adquisición:</h6>
+                        <input type="date" id="txtFecha" name="txtFecha" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Proveedor:</h6>
+                        <input type="text" id="txtProveedor" name="txtProveedor" class="form-control" placeholder="Ej: Laboratorios Bayer S.A." minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <h6>Documentación:</h6>
+                        <input type="text" id="txtDocumentacion" name="txtDocumentacion" class="form-control" placeholder="Ej: Orden de compra No. 2023-07-20-001" minlength="3" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2 d-grid gap-2">
+                        <button type="submit" class="btn btn-primary text-white btnOscuro">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+
+        <div class="row">
+            <h1 class="py-2">Registro de Adquisición de Bienes y Servicios</h1>
+            <div class="col-sm-8 col-md-10 col-lg-6 col-xl-6">
+                <!-- Barra de búsqueda -->
+
+                        <form method="get" action="{% url 'lista_registros' %}" class="d-flex" role="search">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="q" value="{{ form.q.value }}">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                          </form>
+
+            </div>
+        
+            <div class="col-sm-4 col-md-2 col-lg-4 col-xl-4">
+                <button id="toggle-filters" class="btn btn-primary btnMedio btnFiltros"><i class="bi bi-funnel-fill"></i></button>
+                <div id="filters-form" style="display: none;">
+                    <!-- Formulario de filtros aquí -->
+                    <form method="GET" action="{% url 'lista_registros' %}">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Tipo de servicio
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <label for="{{ form.tipo_servicio.id_for_label }}">Tipo de servicio:</label>
+                                        {{ form.tipo_servicio }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Valor Total
+                                  </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <label for="{{ form.valor_total_min.id_for_label }}">Valor total mínimo:</label>
+                                    {{ form.valor_total_min }}
+                                    <br>
+                                
+                                    <label for="{{ form.valor_total_max.id_for_label }}">Valor total máximo:</label>
+                                    {{ form.valor_total_max }}          </div>
+                                </div>
+                              </div>
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Fecha de Adquisición
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+
+                                        <input type="date" id="{{ form.fecha_adquisicion.id_for_label }}" name="{{ form.fecha_adquisicion.name }}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Proveedor
+                                  </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <label for="{{ form.proveedor.id_for_label }}">Proveedor:</label>
+                                    {{ form.proveedor }}          </div>
+                                </div>
+                              </div>
+                        </div>
+                        <button type="submit" class=" btn btn-block btnOscuro">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+           
+
+
+
+        <div class="row">
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Tipo de bien o servicio</th>
+                            <th>Valor total</th>
+                            <th>Fecha de adquisición</th>
+                            <th>Proveedor</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in registros %}
+                        <tr>
+                            <td>{{c.idRegistro}}</td>
+                            <td>{{c.Tipo}}</td>
+                            <td>{{c.ValorTotal}}</td>
+                            <td>{{c.FechaAdquisicion}}</td>
+                            <td>{{c.Proveedor}}</td>
+                            <td> <a href="{% url 'ver_registro' idRegistro=c.idRegistro %}" class="btn btnClaro"><i class="bi bi-eye-fill"></i></a></td>
+                            <td> <a href="{% url 'eliminar_registro' idRegistro=c.idRegistro %}" class="btn btn-danger btnOscuro btnEliminacion"><i class="bi bi-trash-fill"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
