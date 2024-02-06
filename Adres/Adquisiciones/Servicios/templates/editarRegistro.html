@@ -26,28 +26,36 @@
                         <input type="text" id="txtid" name="txtid" value="{{registro.idRegistro}}" class="form-control" placeholder="Presupuesto" minlength="3" maxlength="50" required readonly>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Presupuesto:</h6>
                         <input type="number" id="txtPresupuesto" name="txtPresupuesto" value="{{registro.Presupuesto.amount}}" class="form-control" placeholder="Presupuesto" minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Unidad:</h6>
                         <input type="text" id="txtUnidad" name="txtUnidad" value="{{registro.Unidad}}" class="form-control" placeholder="Unidad" minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Tipo de Bien o Servicio:</h6>
                         <input type="text" id="txtTipo" name="txtTipo" value="{{registro.Tipo}}" class="form-control" placeholder="Tipo de bien o servicio" minlength="3" maxlength="100" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Cantidad:</h6>
                         <input type="number" id="txtCantidad" name="txtCantidad" value="{{registro.Cantidad}}" class="form-control" placeholder="Cantidad" minlength="1" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Valor Unitario:</h6>
                         <input type="number" id="txtValorUnitario" name="txtValorUnitario" value="{{registro.ValorUnitario.amount}}" class="form-control" placeholder="Valor unitario" minlength="3" maxlength="13" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Fecha de Adquisición:</h6>
                         <input type="date" id="txtFecha" name="txtFecha" value="{{registro.FechaAdquisicion|date:'Y-m-d'}}" class="form-control" placeholder="Fecha de Adquisición" required>
 
                     </div>
                     <div class="form-group py-2">
+                        <h6>Proveedor:</h6>
                         <input type="text" id="txtProveedor" name="txtProveedor" value="{{registro.Proveedor}}" class="form-control" placeholder="Proveedor" minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group py-2">
+                        <h6>Documentación:</h6>
                         <input type="text" id="txtDocumentacion" name="txtDocumentacion" value="{{registro.Documentacion}}" class="form-control" placeholder="Documentación" minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group py-2 d-grid gap-2">
