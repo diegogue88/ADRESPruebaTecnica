@@ -30,7 +30,7 @@ Características Principales:
         `pip install django-money`
 
 ### Pasos Para Ejecutar
-1. Clone este repositorio: `git clone [https://github.com/tu_usuario/tu-repositorio.git](https://github.com/diegogue88/ADRESPruebaTecnica.git)`
+1. Clone este repositorio: `git clone https://github.com/diegogue88/ADRESPruebaTecnica.git`
 2. Navegue al directorio del proyecto: `cd Adres/`
 4. Ejecute la aplicación: `python manage.py runserver`
 5. Acceda a la aplicación desde su navegador: `[http://localhost:8000](http://127.0.0.1:8000/)http://127.0.0.1:8000/`
