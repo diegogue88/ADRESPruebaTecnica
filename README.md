@@ -23,11 +23,11 @@ Características Principales:
   Django (preferiblemente la última versión estable):
     1. Abre una terminal o línea de comandos.
     2. Ejecuta el siguiente comando para instalar Django usando pip:
-      pip install django
+      `pip install django`
   django-money:
     1. Abre una terminal o línea de comandos.
     2. Ejecuta el siguiente comando para instalar django-money usando pip:
-      pip install django-money
+      `pip install django-money`
 
 ### Pasos Para Ejecutar
 1. Clone este repositorio: `git clone [https://github.com/tu_usuario/tu-repositorio.git](https://github.com/diegogue88/ADRESPruebaTecnica.git)`
