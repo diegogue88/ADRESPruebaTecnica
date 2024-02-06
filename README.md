@@ -17,14 +17,14 @@ Características Principales:
 
 ## Requisitos
   
-  Python (preferiblemente la última versión estable):
+  -Python (preferiblemente la última versión estable):
     1. Descarga e instala Python desde el sitio web oficial: Python.org
     2. Sigue las instrucciones de instalación para tu sistema operativo.
-  Django (preferiblemente la última versión estable):
+  -Django (preferiblemente la última versión estable):
     1. Abre una terminal o línea de comandos.
     2. Ejecuta el siguiente comando para instalar Django usando pip:
       `pip install django`
-  django-money:
+  -django-money:
     1. Abre una terminal o línea de comandos.
     2. Ejecuta el siguiente comando para instalar django-money usando pip:
       `pip install django-money`
